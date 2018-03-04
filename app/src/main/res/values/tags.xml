@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="counter_text_view">
+        counter_text_view
+    </string>
+</resources>

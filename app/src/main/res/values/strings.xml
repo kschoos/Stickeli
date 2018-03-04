@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Stickeli</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="counter_positions">com.example.skysk.stickeli.COUNTER_POSITIONS</string>
+
+    <string name="projects_file_path">projects.json</string>
+
+    <string name="test_projects_file_path">test_projects.json</string>
+</resources>
