@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/new_project_dialog_project_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/project_name_hint"
+        />
+
+    <EditText
+        android:id="@+id/new_project_dialog_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/project_count_hint"
+        android:inputType="number" />
+
+    <ImageView
+        android:id="@+id/new_project_dialog_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>

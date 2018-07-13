@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Stickeli</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="new_project_title">Neues Projekt...</string>
+    <string name="project_name_hint">Projekt Name</string>
+    <string name="project_count_hint">Bereits gestickt</string>
+    <string name="undo_snackbar_text">Versehen?</string>
+    <string name="undo_snackbar_button">Rückgängig</string>
+    <string name="text_projects">Projekte</string>
+    <string name="text_album">Album</string>
+    <string name="take_photo">Foto machen</string>
+    <string name="toast_enter_name">Bitte gib einen Namen ein...</string>
+</resources>

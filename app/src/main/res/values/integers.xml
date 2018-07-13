@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="TAKE_PICTURE_REQUEST_CODE">1</integer>
+    <integer name="WRITE_EXTERNAL_STORAGE_REQUEST_CODE">2</integer>
+</resources>

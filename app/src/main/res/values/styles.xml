@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,4 +8,38 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="TitleBarTextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/rochester</item>
+        <item name="android:textSize">@dimen/title_bar_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DarkText">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily" tools:targetApi="jelly_bean">@font/rochester</item>
+        <item name="android:textSize">@dimen/project_text_size</item>
+    </style>
+
+    <style name="DarkText.Bold" parent="DarkText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="DarkText.Title" parent="DarkText.Bold">
+        <item name="android:textSize">@dimen/project_title_text_size</item>
+    </style>
+
+    <style name="DarkText.Small" parent="DarkText.Bold">
+        <item name="android:textSize">@dimen/project_small_text_size</item>
+    </style>
+
+    <dimen name="project_small_text_size">14sp</dimen>
 </resources>

@@ -1,11 +1,20 @@
 <resources>
-    <string name="app_name">Stickeli</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="counter_positions">com.example.skysk.stickeli.COUNTER_POSITIONS</string>
-
-    <string name="projects_file_path">projects.json</string>
-
-    <string name="test_projects_file_path">test_projects.json</string>
+    <string name="app_name" translatable="false">Stickeli </string>
+    <string name="counter_positions" translatable="false">com.example.skysk.stickeli.COUNTER_POSITIONS</string>
+    <string name="projects_file_path" translatable="false">projects.json</string>
+    <string name="test_projects_file_path" translatable="false">test_projects.json</string>
+    <string name="ok" translatable="false">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="new_project_title">New Project...</string>
+    <string name="project_name_hint">Project Name</string>
+    <string name="project_count_hint">Already stitched</string>
+    <string name="title_activity_animation_test">AnimationTest</string>
+    <string name="undo_snackbar_text">Removed by accident?</string>
+    <string name="undo_snackbar_button">Undo</string>
+    <string name="text_projects">Projects</string>
+    <string name="text_album">Album</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="file_provider_authority">com.example.skysk.stickeli_fileprovider</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="toast_enter_name">Please enter a valid name...</string>
 </resources>

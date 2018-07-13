@@ -1,6 +1,9 @@
 package com.example.skysk.stickeli;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -23,31 +26,56 @@ import java.util.List;
  */
 
 public class Project {
-    public String name;
-    public long crossCount;
-    public int position;
-    public boolean done;
+
+    // TODO: Make Private!
+    public String mName;
+    public long mHalfCrossCount;
+    public int mPosition;
+    public boolean mDone;
+    public String mUriString;
 
     Project(String pName)
     {
-        name = pName;
-        crossCount = 0;
-        position = 0;
-        done = false;
+        mName = pName;
+        mHalfCrossCount = 0;
+        mPosition = 0;
+        mDone = false;
+        mUriString = null;
+    }
+
+    public Uri GetThumbnailUri()
+    {
+        return Uri.parse(mUriString);
+    }
+
+    public void SetThumbnailUri(Uri pThumbnailUri)
+    {
+        mUriString = pThumbnailUri.toString();
+    }
+
+    public Bitmap GetThumbnail(ContentResolver pContentResolver, int pThumbSize, Uri pUri)
+    {
+        return CameraHelper.GetThumbnailFromUri(pContentResolver, pThumbSize, pUri);
     }
 
     public static void saveProjectsToInternalStorage(
             Context pContext,
-            ArrayList<Project> pProjects
+            List<Project> pProjects
     )
     {
         saveProjectsToFile(pContext, pContext.getString(R.string.projects_file_path), pProjects);
     }
 
+    public static void deleteAllProjects(Context pContext)
+    {
+        File file = new File(pContext.getFilesDir(), "projects.json");
+        file.delete();
+    }
+
     public static void saveProjectsToFile(
             Context pContext,
             String pFileName,
-            ArrayList<Project> pProjects)
+            List<Project> pProjects)
     {
         Gson gson = new Gson();
         String projects = gson.toJson(pProjects);
@@ -118,7 +146,7 @@ public class Project {
         ArrayList<String> names = new ArrayList<>();
         for(Project project: pProjects)
         {
-            names.add(project.name);
+            names.add(project.mName);
         }
         return names;
     }

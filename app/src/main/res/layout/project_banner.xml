@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp"
+    android:clipToPadding="false"
+    tools:targetApi="lollipop">
+
+    <ImageView
+        android:id="@+id/project_banner_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/project_banner_background"
+        android:src="@drawable/linen_texture_small"
+        android:maxHeight="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:elevation="4dp"
+        />
+</RelativeLayout>

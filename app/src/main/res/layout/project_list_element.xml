@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorAccent"
+    android:clickable="false"
+    android:clipChildren="false"
+    app:layout_constraintHeight_max="300dp">
+
+    <!--
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/linen_texture" />
+    -->
+
+    <ImageView
+        android:id="@+id/project_list_thumbnail"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/project_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/project_list_thumbnail"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/project_list_thumbnail"
+        android:gravity="center"
+        android:textAppearance="@style/DarkText.Title"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/project_list_thumbnail"
+        android:text="@string/placeholder"
+        />
+
+
+    <TextView
+        android:id="@+id/project_list_stitch_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/project_list_title"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/project_list_thumbnail"
+        android:gravity="center"
+        android:text="223"
+        android:textAppearance="@style/DarkText"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/project_list_thumbnail" />
+
+    <TextView
+        android:id="@+id/project_list_start_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/project_list_stitch_count"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/project_list_thumbnail"
+        android:gravity="center"
+        android:text="Started: 28.1.2016"
+        android:textAppearance="@style/DarkText.Small"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/project_list_thumbnail" />
+
+    <TextView
+        android:id="@+id/project_list_last_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/project_list_start_date"
+        android:layout_marginLeft="50dp"
+        android:layout_toRightOf="@id/project_list_thumbnail"
+        android:text="Last Edited: 28.1.2016"
+        android:textAppearance="@style/DarkText.Small"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/project_list_thumbnail" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/project_list_thumbnail"
+        android:layout_marginHorizontal="5dp"
+        android:background="@android:color/black"
+        tools:targetApi="o" />
+
+    <ImageButton
+        android:id="@+id/project_list_sort_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/view"
+        android:layout_alignRight="@+id/view"
+        android:layout_alignTop="@+id/project_list_title"
+        app:srcCompat="@drawable/ic_keyboard_arrow_up_black_24" />
+
+    <ImageButton
+        android:id="@+id/project_list_sort_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/view"
+        android:layout_alignEnd="@+id/project_list_sort_up"
+        android:layout_alignRight="@+id/project_list_sort_up"
+        app:srcCompat="@drawable/ic_keyboard_arrow_down_black_24" />
+
+</RelativeLayout>

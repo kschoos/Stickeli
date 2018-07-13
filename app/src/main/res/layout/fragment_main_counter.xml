@@ -1,12 +1,73 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.skysk.stickeli.MainCounterFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
 
-    <include
-        layout="@layout/counter"
-        android:id="@+id/counter_1"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="@dimen/counter_fab_margin_top"
+        android:clickable="true"
+        android:tint="@color/colorPrimaryDark"
+        app:srcCompat="@drawable/ic_photo_camera_black_24dp" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/project_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/counter_symbol_dimension"
+            android:layout_weight="0.1"
+            android:src="@drawable/full_cross"
+            android:textAlignment="center" />
+
+        <include
+            android:id="@+id/counter_full_crosses"
+            layout="@layout/counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/counter_symbol_dimension"
+            android:layout_weight="0.1"
+            android:src="@drawable/half_cross"
+            android:textAlignment="center" />
+
+        <include
+            android:id="@+id/counter_half_crosses"
+            layout="@layout/counter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1" />
+    </LinearLayout>
+
+
+</FrameLayout>
