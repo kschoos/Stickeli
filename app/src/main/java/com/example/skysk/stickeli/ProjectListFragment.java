@@ -112,23 +112,13 @@ public class ProjectListFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_project_list, container, false);
+
         // TODO: Refactor creation of recycler view to its own function
         mRecyclerView = mView.findViewById(R.id.project_recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        //// TODO: Remove these placeholders or at least, wrap them in some Debugging statement
-        //Project project = new Project("Ceresum");
-        //mProjects.add(project);
-
-        //Project project2 = new Project("Quilt");
-        //mProjects.add(project2);
-
-        // TODO: Move saving of files to the correct place!
-        // Project.saveProjectsToInternalStorage(getContext(), mProjects);
 
         ProjectAdapter adapter = new ProjectAdapter(mProjectModel);
 
