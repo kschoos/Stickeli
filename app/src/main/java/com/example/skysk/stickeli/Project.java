@@ -18,8 +18,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by skysk on 3/1/2018.
@@ -33,14 +40,21 @@ public class Project {
     public int mPosition;
     public boolean mDone;
     public String mUriString;
+    public Map<String, Long> mMonthlyHalfCrossCount = new HashMap<>();
 
     Project(String pName)
     {
+        this(pName, 0l);
+    }
+
+    Project(String pName, Long pStartHalfCrossCount)
+    {
         mName = pName;
-        mHalfCrossCount = 0;
+        mHalfCrossCount = pStartHalfCrossCount;
         mPosition = 0;
         mDone = false;
         mUriString = null;
+        SetMonthlyCount(mHalfCrossCount);
     }
 
     public Uri GetThumbnailUri()
@@ -50,7 +64,9 @@ public class Project {
 
     public void SetThumbnailUri(Uri pThumbnailUri)
     {
-        mUriString = pThumbnailUri.toString();
+        if(pThumbnailUri != null) {
+            mUriString = pThumbnailUri.toString();
+        }
     }
 
     public Bitmap GetThumbnail(ContentResolver pContentResolver, int pThumbSize, Uri pUri)
@@ -149,5 +165,25 @@ public class Project {
             names.add(project.mName);
         }
         return names;
+    }
+
+    public void SetMonthlyCount(Long pCount)
+    {
+        SetMonthlyCount(DateUtils.Today(), mHalfCrossCount);
+    }
+
+    public void SetMonthlyCount(String pDay, Long pCount)
+    {
+        mMonthlyHalfCrossCount.put(pDay, pCount);
+    }
+
+    public void IncrementMonthlyCount(String pDay, Long pBy)
+    {
+        mMonthlyHalfCrossCount.put(pDay, mMonthlyHalfCrossCount.get(pDay) + pBy);
+    }
+
+    public void IncrementMonthlyCount(Long pBy)
+    {
+        IncrementMonthlyCount(DateUtils.Today(), pBy);
     }
 }

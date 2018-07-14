@@ -3,6 +3,11 @@ package com.example.skysk.stickeli;
 import android.content.Context;
 import android.net.Uri;
 
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,7 +15,7 @@ import java.util.List;
  */
 
 public class ProjectModel {
-    public List<Project> mProjects;
+    public List<Project> mProjects = new ArrayList<>();
 
     private class LastRemoved{
         Project mProject;
@@ -39,8 +44,7 @@ public class ProjectModel {
 
     public void AddProject(String pName, long pStartCount, Uri pThumbnailUri)
     {
-        Project project = new Project(pName);
-        project.mHalfCrossCount = pStartCount * 2;
+        Project project = new Project(pName, pStartCount * 2);
         project.SetThumbnailUri(pThumbnailUri);
         mProjects.add(0, project);
     }
@@ -88,13 +92,18 @@ public class ProjectModel {
         return mProjects.get(pIndex).mHalfCrossCount;
     }
 
-    public boolean IncrementStitchCount(int pIndex, int pBy)
+    public boolean IncrementStitchCount(int pIndex, long pBy)
     {
         assert mProjects.size() > pIndex;
         // Only keep the increment if we don't go below zero.
 
-        if((mProjects.get(pIndex).mHalfCrossCount += pBy) >= 0){ return true; }
-        else mProjects.get(pIndex).mHalfCrossCount -= pBy;
+        Project project = mProjects.get(pIndex);
+
+        if((project.mHalfCrossCount += pBy) >= 0){
+            project.IncrementMonthlyCount(pBy);
+            return true;
+        }
+        else project.mHalfCrossCount -= pBy;
 
         return false;
     }
@@ -102,6 +111,7 @@ public class ProjectModel {
     public boolean IncrementStitchCount(int pIndex)
     {
         assert mProjects.size() > pIndex;
+
         return IncrementStitchCount(pIndex, 1);
     }
 
