@@ -107,17 +107,4 @@ public class ProjectModel {
 
         return false;
     }
-
-    public boolean IncrementStitchCount(int pIndex)
-    {
-        assert mProjects.size() > pIndex;
-
-        return IncrementStitchCount(pIndex, 1);
-    }
-
-    public String GetName(int pIndex)
-    {
-        assert mProjects.size() > pIndex;
-        return mProjects.get(pIndex).mName;
-    }
 }
