@@ -39,24 +39,31 @@ public class MonthlyStatsFragment extends Fragment {
         for(Project project: tProjects)
         {
             project.mMonthlyHalfCrossCount.forEach((k, v) -> {
-                List pairs = counts.get(k);
+                ArrayList pairs = counts.get(k);
                 if(pairs == null)
                 {
                     pairs = new ArrayList<Pair<Integer, Long>>();
                 }
-
                 pairs.add(new Pair<>(project.mPosition, v));
+                counts.put(k, pairs);
             });
         }
 
-        for(Map.Entry count: counts.entrySet())
+        for(Map.Entry<String, ArrayList<Pair<Integer, Long>>> count: counts.entrySet())
         {
+            int sz = count.getValue().size();
+            float[] values = new float[count.getValue().size()];
+            for (int i = 0; i<sz; i++)
+            {
+                values[i] = count.getValue().get(i).second;
+            }
+
             BarEntry entry = new BarEntry(
-                    count.getKey(),
-                    ((ArrayList<Pair<Integer, Long>>) count)
-                            .stream()
-                            .map( p -> p.first).collect(Collectors.toList())
+                    Integer.parseInt(count.getKey()),
+                    values
             );
+
+            barEntries.add(entry);
         }
 
         return barEntries;
@@ -66,6 +73,7 @@ public class MonthlyStatsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mProjectModel = ProjectModel.getInstance();
+        mProjectModel.LoadProjects(getContext());
     }
 
     @Override
@@ -75,18 +83,10 @@ public class MonthlyStatsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_monthly_stats, container, false);
         mChart =  view.findViewById(R.id.monthly_chart);
 
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(
-                0,
-                new float[]{22.0f, 33.0f, 24.0f})
-        );
+        BarDataSet barDataSet = new BarDataSet(
+                GetBarEntriesFromProjects(mProjectModel.mProjects),
+                "Monthly Stitch Stats");
 
-        barEntries.add(new BarEntry(
-                1,
-                new float[]{22.0f, 33.0f})
-        );
-
-        BarDataSet barDataSet = new BarDataSet(barEntries, "Monthly Stitch Stats");
         BarData barData = new BarData(barDataSet);
         mChart.setData(barData);
 
