@@ -59,7 +59,12 @@ public class Project {
 
     public Uri GetThumbnailUri()
     {
-        return Uri.parse(mUriString);
+        if(mUriString != null)
+        {
+            return Uri.parse(mUriString);
+        }
+
+        return null;
     }
 
     public void SetThumbnailUri(Uri pThumbnailUri)
