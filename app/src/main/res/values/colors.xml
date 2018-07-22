@@ -4,5 +4,33 @@
     <color name="colorPrimaryDark">#b14b78</color>
     <color name="colorAccent">#fcebf1</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="pink1">#7D005A</color>
+    <color name="pink2">#A50078</color>
+    <color name="pink3">#DB37AE</color>
+    <color name="pink4">#EC71CA</color>
+    <color name="red1">#970029</color>
+    <color name="red2">#C90036</color>
+    <color name="red3">#F23D6D</color>
+    <color name="red4">#F87799</color>
+    <color name="blue1">#480470</color>
+    <color name="blue2">#5F0794</color>
+    <color name="blue3">#993DD0</color>
+    <color name="blue4">#BC75E7</color>
+
+    <array name="colors">
+        <item>@color/pink4</item>
+        <item>@color/red4</item>
+        <item>@color/blue4</item>
+        <item>@color/pink3</item>
+        <item>@color/red3</item>
+        <item>@color/blue3</item>
+        <item>@color/pink2</item>
+        <item>@color/red2</item>
+        <item>@color/blue2</item>
+        <item>@color/pink1</item>
+        <item>@color/red1</item>
+        <item>@color/blue1</item>
+    </array>
 </resources>
 
