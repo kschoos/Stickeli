@@ -184,6 +184,10 @@ public class Project {
 
     public void IncrementMonthlyCount(String pDay, Long pBy)
     {
+        if(mMonthlyHalfCrossCount.get(pDay) == null)
+        {
+            mMonthlyHalfCrossCount.put(pDay, 0l);
+        }
         mMonthlyHalfCrossCount.put(pDay, mMonthlyHalfCrossCount.get(pDay) + pBy);
     }
 
