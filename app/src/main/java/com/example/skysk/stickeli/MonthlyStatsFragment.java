@@ -2,6 +2,8 @@ package com.example.skysk.stickeli;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,16 +13,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 
 public class MonthlyStatsFragment extends Fragment {
 
@@ -31,9 +40,10 @@ public class MonthlyStatsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private List<BarEntry> GetBarEntriesFromProjects(List<Project> tProjects)
+    private BarDataSet GetBarDataSetsFromProjects(List<Project> tProjects)
     {
-        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        ArrayList<BarEntry> stackedBarEntries = new ArrayList<>();
+
         Map<String, ArrayList<Pair<Integer, Long>>> counts = new HashMap<>();
 
         for(Project project: tProjects)
@@ -58,15 +68,17 @@ public class MonthlyStatsFragment extends Fragment {
                 values[i] = count.getValue().get(i).second;
             }
 
-            BarEntry entry = new BarEntry(
-                    Integer.parseInt(count.getKey()),
+            int date = Integer.parseInt(count.getKey());
+
+            BarEntry stackedEntry = new BarEntry(
+                    date,
                     values
             );
 
-            barEntries.add(entry);
+            stackedBarEntries.add(stackedEntry);
         }
 
-        return barEntries;
+        return new BarDataSet(stackedBarEntries, "Stitch Counts");
     }
 
     @Override
@@ -79,18 +91,38 @@ public class MonthlyStatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_monthly_stats, container, false);
         mChart =  view.findViewById(R.id.monthly_chart);
 
-        BarDataSet barDataSet = new BarDataSet(
-                GetBarEntriesFromProjects(mProjectModel.mProjects),
-                "Monthly Stitch Stats");
+        BarDataSet barDataSet = GetBarDataSetsFromProjects(mProjectModel.mProjects);
+
+        int[] colors = new int[mProjectModel.mProjects.size()];
+        int[] savedColors = getContext().getResources().getIntArray(R.array.colors);
+
+        for(int i = 0; i < colors.length; i++)
+        {
+        colors[i] = savedColors[i%savedColors.length];
+        }
+
+        barDataSet.setColors(colors);
+        barDataSet.setStackLabels(mProjectModel.GetProjectNames());
 
         BarData barData = new BarData(barDataSet);
+
+        XAxis xaxis = mChart.getXAxis();
+        xaxis.setValueFormatter(new DateAxisFormatter());
+        xaxis.setGranularity(1f);
+        xaxis.setLabelRotationAngle(45);
+        xaxis.setAxisMinimum(Float.parseFloat(DateUtils.StartOfMonth()));
+        xaxis.setAxisMaximum(Float.parseFloat(DateUtils.EndOfMonth()));
+        xaxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        barData.setValueTextColor(Color.WHITE);
+
+        mChart.getDescription().setEnabled(false);
+        mChart.setDrawValueAboveBar(false);
         mChart.setData(barData);
 
-        // Inflate the layout for this fragment
         return view;
     }
 }
