@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.skysk.stickeli.Fragments.SummaryStatsFragment;
+
 public class StatsActivity extends Activity {
 
     /**
@@ -126,6 +128,8 @@ public class StatsActivity extends Activity {
             {
                 case 0:
                     return new MonthlyStatsFragment();
+                case 1:
+                    return new SummaryStatsFragment();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
