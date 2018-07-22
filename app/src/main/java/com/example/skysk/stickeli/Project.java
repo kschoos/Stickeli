@@ -214,7 +214,7 @@ public class Project {
     }
 
     /**
-     * Helper to get todays stitch count
+     * Helper to get today's stitch count
      * @return Today's stitch count
      */
     public long GetDailyStitchCount()
