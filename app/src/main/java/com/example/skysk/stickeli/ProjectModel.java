@@ -7,6 +7,7 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -42,22 +43,33 @@ public class ProjectModel {
         Project.saveProjectsToInternalStorage(pContext, getInstance().mProjects);
     }
 
+    private void UpdateProjectPositions()
+    {
+        for(int i = 0; i < mProjects.size(); i++)
+        {
+            mProjects.get(i).mPosition = i;
+        }
+    }
+
     public void AddProject(String pName, long pStartCount, Uri pThumbnailUri)
     {
         Project project = new Project(pName, pStartCount * 2);
         project.SetThumbnailUri(pThumbnailUri);
         mProjects.add(0, project);
+        UpdateProjectPositions();
     }
 
     public int UndoRemoveProject()
     {
         mProjects.add(mLastRemoved.mFrom, mLastRemoved.mProject);
+        UpdateProjectPositions();
         return mLastRemoved.mFrom;
     }
 
     public void RemoveProject(int pIndex)
     {
         mLastRemoved = new LastRemoved(mProjects.remove(pIndex), pIndex);
+        UpdateProjectPositions();
     }
 
     public void LoadProjects(Context pContext)
@@ -106,5 +118,22 @@ public class ProjectModel {
         else project.mHalfCrossCount -= pBy;
 
         return false;
+    }
+
+    public void SwapProjects(int i1, int i2)
+    {
+        Collections.swap(mProjects, i1, i2);
+        UpdateProjectPositions();
+    }
+
+    public String[] GetProjectNames()
+    {
+        String[] names = new String[mProjects.size()];
+        for(int i = 0; i < names.length; i++)
+        {
+            names[i] = mProjects.get(i).mName;
+        }
+
+        return names;
     }
 }

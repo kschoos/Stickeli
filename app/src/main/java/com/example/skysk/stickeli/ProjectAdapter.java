@@ -59,40 +59,26 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             mThumbnail = itemView.findViewById(R.id.project_list_thumbnail);
             mContentResolver = pContentResolver;
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View pView) {
-                    pProjectModel.SetCurrentlySelected((int) getAdapterPosition());
-                    Intent counterIntent = new Intent(pContext, CounterActivity.class);
-                    pContext.startActivity(counterIntent);
-                }
+            itemView.setOnClickListener(pView -> {
+                pProjectModel.SetCurrentlySelected(getAdapterPosition());
+                Intent counterIntent = new Intent(pContext, CounterActivity.class);
+                pContext.startActivity(counterIntent);
             });
 
             // TODO: Move these functions out of here.
-            mSortUpButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(getAdapterPosition() != 0)
-                    {
-                        Collections.swap(pAdapter.mProjectModel.mProjects,
-                                getAdapterPosition(),
-                                getAdapterPosition()-1);
-                        pAdapter.notifyItemRangeChanged(getAdapterPosition()-1,
-                                2);
-                    }
+            mSortUpButton.setOnClickListener(view -> {
+                if(getAdapterPosition() != 0)
+                {
+                    pAdapter.mProjectModel.SwapProjects(getAdapterPosition(), getAdapterPosition()-1);
+                    pAdapter.notifyItemRangeChanged(getAdapterPosition()-1, 2);
                 }
             });
 
-            mSortDownButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(getAdapterPosition() < pAdapter.mProjectModel.mProjects.size()-1)
-                    {
-                        Collections.swap(pAdapter.mProjectModel.mProjects,
-                                getAdapterPosition(),
-                                getAdapterPosition()+1);
-                        pAdapter.notifyItemRangeChanged(getAdapterPosition(), 2);
-                    }
+            mSortDownButton.setOnClickListener(view -> {
+                if(getAdapterPosition() < pAdapter.mProjectModel.mProjects.size()-1)
+                {
+                    pAdapter.mProjectModel.SwapProjects(getAdapterPosition(), getAdapterPosition()+1);
+                    pAdapter.notifyItemRangeChanged(getAdapterPosition(), 2);
                 }
             });
         }
