@@ -96,14 +96,8 @@ public class MonthlyStatsFragment extends Fragment {
 
         BarDataSet barDataSet = GetBarDataSetsFromProjects(mProjectModel.mProjects);
 
-        int[] colors = new int[mProjectModel.mProjects.size()];
-        int[] savedColors = getContext().getResources().getIntArray(R.array.colors);
 
-        for(int i = 0; i < colors.length; i++)
-        {
-        colors[i] = savedColors[i%savedColors.length];
-        }
-
+        int[] colors = ChartHelper.GetNColors(mProjectModel.mProjects.size(), getContext());
         barDataSet.setColors(colors);
         barDataSet.setStackLabels(mProjectModel.GetProjectNames());
 
