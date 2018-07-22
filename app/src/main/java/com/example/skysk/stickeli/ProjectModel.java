@@ -120,6 +120,17 @@ public class ProjectModel {
         return false;
     }
 
+    public long GetDailyStitchCount(int pProjectIndex, String pDay)
+    {
+        Long count = mProjects.get(pProjectIndex).mMonthlyHalfCrossCount.get(pDay);
+        if(count == null)
+        {
+            return 0;
+        }
+
+        return count;
+    }
+
     public void SwapProjects(int i1, int i2)
     {
         Collections.swap(mProjects, i1, i2);
