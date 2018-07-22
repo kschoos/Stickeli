@@ -18,6 +18,11 @@ public class DateUtils {
         return dateFormat.format(new Date());
     }
 
+    public static String FormatDateMachineReadable(Date pDate)
+    {
+        return dateFormat.format(pDate);
+    }
+
     public static int DaysInMonth()
     {
         Calendar cal = Calendar.getInstance();
