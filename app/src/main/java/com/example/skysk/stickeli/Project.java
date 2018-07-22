@@ -195,4 +195,30 @@ public class Project {
     {
         IncrementMonthlyCount(DateUtils.Today(), pBy);
     }
+
+    /**
+     * Gets the stitch count of a given day
+     * @param pDay The day for which the stitch count shall be returned
+     * @return The stitch count for the given day.
+     */
+    public long GetDailyStitchCount(Date pDay)
+    {
+        String day = DateUtils.FormatDateMachineReadable(pDay);
+        Long count = mMonthlyHalfCrossCount.get(day);
+        if(count == null)
+        {
+            return 0;
+        }
+
+        return count;
+    }
+
+    /**
+     * Helper to get todays stitch count
+     * @return Today's stitch count
+     */
+    public long GetDailyStitchCount()
+    {
+        return GetDailyStitchCount(new Date());
+    }
 }
